@@ -3,6 +3,14 @@
 
 public partial class MainWindow
 {
+	private global::Gtk.ScrolledWindow GtkScrolledWindow;
+
+	private global::Gtk.HPaned hpaned1;
+
+	private global::Gtk.Fixed fixed1;
+
+	private global::Gtk.VSeparator vseparator1;
+
 	protected virtual void Build ()
 	{
 		global::Stetic.Gui.Initialize (this);
@@ -10,11 +18,42 @@ public partial class MainWindow
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString ("MainWindow");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+		// Container child MainWindow.Gtk.Container+ContainerChild
+		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
+		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
+		global::Gtk.Viewport w1 = new global::Gtk.Viewport ();
+		w1.ShadowType = ((global::Gtk.ShadowType)(0));
+		// Container child GtkViewport.Gtk.Container+ContainerChild
+		this.hpaned1 = new global::Gtk.HPaned ();
+		this.hpaned1.CanDefault = true;
+		this.hpaned1.CanFocus = true;
+		this.hpaned1.Name = "hpaned1";
+		this.hpaned1.Position = 166;
+		// Container child hpaned1.Gtk.Paned+PanedChild
+		this.fixed1 = new global::Gtk.Fixed ();
+		this.fixed1.Name = "fixed1";
+		this.fixed1.HasWindow = false;
+		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.vseparator1 = new global::Gtk.VSeparator ();
+		this.vseparator1.Name = "vseparator1";
+		this.fixed1.Add (this.vseparator1);
+		global::Gtk.Fixed.FixedChild w2 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.vseparator1]));
+		w2.X = 72;
+		w2.Y = 150;
+		this.hpaned1.Add (this.fixed1);
+		global::Gtk.Paned.PanedChild w3 = ((global::Gtk.Paned.PanedChild)(this.hpaned1[this.fixed1]));
+		w3.Resize = false;
+		w1.Add (this.hpaned1);
+		this.GtkScrolledWindow.Add (w1);
+		this.Add (this.GtkScrolledWindow);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 400;
-		this.DefaultHeight = 300;
+		this.DefaultWidth = 576;
+		this.DefaultHeight = 336;
+		this.hpaned1.HasDefault = true;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 	}
