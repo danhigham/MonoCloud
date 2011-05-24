@@ -7,10 +7,6 @@ public partial class MainWindow
 
 	private global::Gtk.HPaned hpaned1;
 
-	private global::Gtk.Fixed fixed1;
-
-	private global::Gtk.VSeparator vseparator1;
-
 	protected virtual void Build ()
 	{
 		global::Stetic.Gui.Initialize (this);
@@ -31,20 +27,6 @@ public partial class MainWindow
 		this.hpaned1.CanFocus = true;
 		this.hpaned1.Name = "hpaned1";
 		this.hpaned1.Position = 166;
-		// Container child hpaned1.Gtk.Paned+PanedChild
-		this.fixed1 = new global::Gtk.Fixed ();
-		this.fixed1.Name = "fixed1";
-		this.fixed1.HasWindow = false;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.vseparator1 = new global::Gtk.VSeparator ();
-		this.vseparator1.Name = "vseparator1";
-		this.fixed1.Add (this.vseparator1);
-		global::Gtk.Fixed.FixedChild w2 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.vseparator1]));
-		w2.X = 72;
-		w2.Y = 150;
-		this.hpaned1.Add (this.fixed1);
-		global::Gtk.Paned.PanedChild w3 = ((global::Gtk.Paned.PanedChild)(this.hpaned1[this.fixed1]));
-		w3.Resize = false;
 		w1.Add (this.hpaned1);
 		this.GtkScrolledWindow.Add (w1);
 		this.Add (this.GtkScrolledWindow);

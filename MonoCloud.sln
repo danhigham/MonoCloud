@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoCloud", "MonoCloud\MonoCloud.csproj", "{AF6F3BC4-7188-4A48-A916-7E31EF88CEE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoSoundCloud", "MonoSoundCloud\MonoSoundCloud.csproj", "{B9649BCD-CE72-411C-BF21-131DBCB6EAE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoSoundCloud.Tests", "MonoSoundCloud.Tests\MonoSoundCloud.Tests.csproj", "{C02EA7DF-16BB-4A51-8AA9-F9C0D264C23A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +17,14 @@ Global
 		{AF6F3BC4-7188-4A48-A916-7E31EF88CEE9}.Debug|x86.Build.0 = Debug|x86
 		{AF6F3BC4-7188-4A48-A916-7E31EF88CEE9}.Release|x86.ActiveCfg = Release|x86
 		{AF6F3BC4-7188-4A48-A916-7E31EF88CEE9}.Release|x86.Build.0 = Release|x86
+		{B9649BCD-CE72-411C-BF21-131DBCB6EAE2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B9649BCD-CE72-411C-BF21-131DBCB6EAE2}.Debug|x86.Build.0 = Debug|Any CPU
+		{B9649BCD-CE72-411C-BF21-131DBCB6EAE2}.Release|x86.ActiveCfg = Release|Any CPU
+		{B9649BCD-CE72-411C-BF21-131DBCB6EAE2}.Release|x86.Build.0 = Release|Any CPU
+		{C02EA7DF-16BB-4A51-8AA9-F9C0D264C23A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C02EA7DF-16BB-4A51-8AA9-F9C0D264C23A}.Debug|x86.Build.0 = Debug|Any CPU
+		{C02EA7DF-16BB-4A51-8AA9-F9C0D264C23A}.Release|x86.ActiveCfg = Release|Any CPU
+		{C02EA7DF-16BB-4A51-8AA9-F9C0D264C23A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = MonoCloud\MonoCloud.csproj
