@@ -1,9 +1,54 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" ctype="Workspace" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MonoCloud/Main.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MonoSoundCloud.Tests/APITests.cs" ctype="Workbench">
     <Files>
-      <File FileName="MonoCloud/Main.cs" Line="18" Column="1" />
+      <File FileName="MonoCloud/Main.cs" Line="3" Column="1" />
+      <File FileName="MonoSoundCloud/Entities/Track.cs" Line="72" Column="4" />
+      <File FileName="MonoSoundCloud.Tests/APITests.cs" Line="22" Column="63" />
+      <File FileName="MonoSoundCloud/SoundCloudRestClient.cs" Line="47" Column="36" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="MonoCloud" expanded="True" />
+          <Node name="MonoSoundCloud" expanded="True" />
+          <Node name="MonoSoundCloud.Tests" expanded="True">
+            <Node name="APITests.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True">
+          <Node name="MonoSoundCloud" expanded="True">
+            <Node name="References" expanded="True">
+              <Node name="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" expanded="True">
+                <Node name="System" expanded="True">
+                  <Node name="Web" expanded="True">
+                    <Node name="Script" expanded="True">
+                      <Node name="Serialization" expanded="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True">
+          <Node name="MonoSoundCloud.Tests" expanded="True">
+            <Node name="MonoSoundCloud" expanded="True">
+              <Node name="Tests" expanded="True">
+                <Node name="APITests" expanded="True" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

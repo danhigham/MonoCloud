@@ -8,36 +8,139 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/MonoCloud.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="576 336">
+  <widget class="Gtk.Window" id="MainWindow" design-size="592 460">
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
-      <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+      <widget class="Gtk.VBox" id="vbox2">
         <property name="MemberName" />
-        <property name="ShadowType">In</property>
+        <property name="Spacing">2</property>
+        <property name="BorderWidth">3</property>
         <child>
-          <widget class="Gtk.Viewport" id="GtkViewport">
+          <widget class="Gtk.HBox" id="hbox5">
             <property name="MemberName" />
-            <property name="ShadowType">None</property>
+            <property name="HeightRequest">36</property>
+            <property name="Spacing">6</property>
+            <property name="BorderWidth">3</property>
             <child>
-              <widget class="Gtk.HPaned" id="hpaned1">
+              <widget class="Gtk.Label" id="label2">
                 <property name="MemberName" />
-                <property name="CanDefault">True</property>
-                <property name="HasDefault">True</property>
+                <property name="LabelProp" translatable="yes">Volume</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.HScale" id="hscale3">
+                <property name="MemberName" />
+                <property name="WidthRequest">80</property>
                 <property name="CanFocus">True</property>
-                <property name="ShowScrollbars">True</property>
-                <property name="Position">166</property>
+                <property name="DrawValue">False</property>
+                <property name="ValuePos">Top</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.HBox" id="hbox4">
+                <property name="MemberName" />
+                <property name="HeightRequest">40</property>
+                <property name="Spacing">5</property>
+                <property name="BorderWidth">2</property>
                 <child>
-                  <placeholder />
+                  <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+                    <property name="MemberName" />
+                    <property name="ShadowType">In</property>
+                    <child>
+                      <widget class="Gtk.TextView" id="SearchTextBox">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="ShowScrollbars">True</property>
+                        <property name="AcceptsTab">False</property>
+                        <property name="Text" translatable="yes" />
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                  </packing>
                 </child>
                 <child>
-                  <placeholder />
+                  <widget class="Gtk.Button" id="SearchButton">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Events">ButtonReleaseMask</property>
+                    <property name="Type">TextAndIcon</property>
+                    <property name="Icon">stock:search Menu</property>
+                    <property name="Label" translatable="yes">Search</property>
+                    <property name="UseUnderline">True</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
                 </child>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HPaned" id="hpaned3">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Position">442</property>
+            <property name="BorderWidth">3</property>
+            <child>
+              <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow1">
+                <property name="MemberName" />
+                <property name="ShadowType">In</property>
+                <child>
+                  <widget class="Gtk.TreeView" id="SearchResults">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="ShowScrollbars">True</property>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Resize">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Fixed" id="fixed6">
+                <property name="MemberName" />
+                <property name="HasWindow">False</property>
               </widget>
             </child>
           </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder />
         </child>
       </widget>
     </child>
