@@ -13,9 +13,7 @@ public partial class MainWindow
 
 	private global::Gtk.HBox hbox4;
 
-	private global::Gtk.ScrolledWindow GtkScrolledWindow;
-
-	private global::Gtk.TextView SearchTextBox;
+	private global::Gtk.Entry SearchTextBox;
 
 	private global::Gtk.Button SearchButton;
 
@@ -26,6 +24,8 @@ public partial class MainWindow
 	private global::Gtk.TreeView SearchResults;
 
 	private global::Gtk.Fixed fixed6;
+
+	private global::Gtk.Image Waveform;
 
 	protected virtual void Build ()
 	{
@@ -59,7 +59,11 @@ public partial class MainWindow
 		this.hscale3.WidthRequest = 80;
 		this.hscale3.CanFocus = true;
 		this.hscale3.Name = "hscale3";
+		this.hscale3.Adjustment.Upper = 100;
+		this.hscale3.Adjustment.PageIncrement = 10;
+		this.hscale3.Adjustment.StepIncrement = 1;
 		this.hscale3.DrawValue = false;
+		this.hscale3.Digits = 0;
 		this.hscale3.ValuePos = ((global::Gtk.PositionType)(2));
 		this.hbox5.Add (this.hscale3);
 		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.hscale3]));
@@ -71,18 +75,14 @@ public partial class MainWindow
 		this.hbox4.Spacing = 5;
 		this.hbox4.BorderWidth = ((uint)(2));
 		// Container child hbox4.Gtk.Box+BoxChild
-		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
-		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
-		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
-		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-		this.SearchTextBox = new global::Gtk.TextView ();
+		this.SearchTextBox = new global::Gtk.Entry ();
 		this.SearchTextBox.CanFocus = true;
 		this.SearchTextBox.Name = "SearchTextBox";
-		this.SearchTextBox.AcceptsTab = false;
-		this.GtkScrolledWindow.Add (this.SearchTextBox);
-		this.hbox4.Add (this.GtkScrolledWindow);
-		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.GtkScrolledWindow]));
-		w4.Position = 0;
+		this.SearchTextBox.IsEditable = true;
+		this.SearchTextBox.InvisibleChar = '•';
+		this.hbox4.Add (this.SearchTextBox);
+		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.SearchTextBox]));
+		w3.Position = 0;
 		// Container child hbox4.Gtk.Box+BoxChild
 		this.SearchButton = new global::Gtk.Button ();
 		this.SearchButton.CanFocus = true;
@@ -90,34 +90,34 @@ public partial class MainWindow
 		this.SearchButton.Name = "SearchButton";
 		this.SearchButton.UseUnderline = true;
 		// Container child SearchButton.Gtk.Container+ContainerChild
-		global::Gtk.Alignment w5 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+		global::Gtk.Alignment w4 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
 		// Container child GtkAlignment.Gtk.Container+ContainerChild
-		global::Gtk.HBox w6 = new global::Gtk.HBox ();
-		w6.Spacing = 2;
+		global::Gtk.HBox w5 = new global::Gtk.HBox ();
+		w5.Spacing = 2;
 		// Container child GtkHBox.Gtk.Container+ContainerChild
-		global::Gtk.Image w7 = new global::Gtk.Image ();
-		w7.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "search", global::Gtk.IconSize.Menu);
-		w6.Add (w7);
-		// Container child GtkHBox.Gtk.Container+ContainerChild
-		global::Gtk.Label w9 = new global::Gtk.Label ();
-		w9.LabelProp = global::Mono.Unix.Catalog.GetString ("Search");
-		w9.UseUnderline = true;
-		w6.Add (w9);
+		global::Gtk.Image w6 = new global::Gtk.Image ();
+		w6.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "search", global::Gtk.IconSize.Menu);
 		w5.Add (w6);
-		this.SearchButton.Add (w5);
+		// Container child GtkHBox.Gtk.Container+ContainerChild
+		global::Gtk.Label w8 = new global::Gtk.Label ();
+		w8.LabelProp = global::Mono.Unix.Catalog.GetString ("Search");
+		w8.UseUnderline = true;
+		w5.Add (w8);
+		w4.Add (w5);
+		this.SearchButton.Add (w4);
 		this.hbox4.Add (this.SearchButton);
-		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.SearchButton]));
-		w13.Position = 1;
-		w13.Expand = false;
-		w13.Fill = false;
+		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.SearchButton]));
+		w12.Position = 1;
+		w12.Expand = false;
+		w12.Fill = false;
 		this.hbox5.Add (this.hbox4);
-		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.hbox4]));
-		w14.Position = 2;
+		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.hbox4]));
+		w13.Position = 2;
 		this.vbox2.Add (this.hbox5);
-		global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox5]));
-		w15.Position = 0;
-		w15.Expand = false;
-		w15.Fill = false;
+		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox5]));
+		w14.Position = 0;
+		w14.Expand = false;
+		w14.Fill = false;
 		// Container child vbox2.Gtk.Box+BoxChild
 		this.hpaned3 = new global::Gtk.HPaned ();
 		this.hpaned3.CanFocus = true;
@@ -132,18 +132,29 @@ public partial class MainWindow
 		this.SearchResults = new global::Gtk.TreeView ();
 		this.SearchResults.CanFocus = true;
 		this.SearchResults.Name = "SearchResults";
+		this.SearchResults.SearchColumn = 2;
 		this.GtkScrolledWindow1.Add (this.SearchResults);
 		this.hpaned3.Add (this.GtkScrolledWindow1);
-		global::Gtk.Paned.PanedChild w17 = ((global::Gtk.Paned.PanedChild)(this.hpaned3[this.GtkScrolledWindow1]));
-		w17.Resize = false;
+		global::Gtk.Paned.PanedChild w16 = ((global::Gtk.Paned.PanedChild)(this.hpaned3[this.GtkScrolledWindow1]));
+		w16.Resize = false;
 		// Container child hpaned3.Gtk.Paned+PanedChild
 		this.fixed6 = new global::Gtk.Fixed ();
 		this.fixed6.Name = "fixed6";
 		this.fixed6.HasWindow = false;
 		this.hpaned3.Add (this.fixed6);
 		this.vbox2.Add (this.hpaned3);
-		global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hpaned3]));
-		w19.Position = 1;
+		global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hpaned3]));
+		w18.Position = 1;
+		// Container child vbox2.Gtk.Box+BoxChild
+		this.Waveform = new global::Gtk.Image ();
+		this.Waveform.HeightRequest = 80;
+		this.Waveform.Name = "Waveform";
+		this.vbox2.Add (this.Waveform);
+		global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.Waveform]));
+		w19.Position = 2;
+		w19.Expand = false;
+		w19.Fill = false;
+		w19.Padding = ((uint)(3));
 		this.Add (this.vbox2);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();

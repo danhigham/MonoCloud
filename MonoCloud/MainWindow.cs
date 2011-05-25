@@ -16,13 +16,20 @@ public partial class MainWindow : Gtk.Window
 		
 		/* Create object to bind treeview */
 		
+		/* Play Button */
+		TreeViewColumn playButtonColumn = new TreeViewColumn();
+		
+		CellRendererPixbuf playCell = new CellRendererPixbuf();
+		playButtonColumn.PackStart(playCell, true);
+		playButtonColumn.AddAttribute(playCell, "pixbuf", 1);
+		
 		/* Track Title */
 		TreeViewColumn trackTitleColumn = new TreeViewColumn();
 		trackTitleColumn.Title = "Track Title";
 		
 		CellRendererText trackCell = new CellRendererText();
 		trackTitleColumn.PackStart(trackCell, true);
-		trackTitleColumn.AddAttribute(trackCell, "text", 0);
+		trackTitleColumn.AddAttribute(trackCell, "text", 2);
 		
 		/* Time */
 		TreeViewColumn timeColumn = new TreeViewColumn();
@@ -30,7 +37,7 @@ public partial class MainWindow : Gtk.Window
 		
 		CellRendererText timeCell = new CellRendererText();
 		timeColumn.PackStart(timeCell, true);
-		timeColumn.AddAttribute(timeCell, "text", 1);
+		timeColumn.AddAttribute(timeCell, "text", 3);
 		
 		/* User */
 		TreeViewColumn userColumn = new TreeViewColumn();
@@ -38,7 +45,7 @@ public partial class MainWindow : Gtk.Window
 		
 		CellRendererText userCell = new CellRendererText();
 		userColumn.PackStart(userCell, true);
-		userColumn.AddAttribute(userCell, "text", 2);
+		userColumn.AddAttribute(userCell, "text", 4);
 		
 		/* Created */
 		TreeViewColumn createdColumn = new TreeViewColumn();
@@ -46,7 +53,7 @@ public partial class MainWindow : Gtk.Window
 		
 		CellRendererText createdCell = new CellRendererText();
 		createdColumn.PackStart(createdCell, true);
-		createdColumn.AddAttribute(createdCell, "text", 3);
+		createdColumn.AddAttribute(createdCell, "text", 5);
 		
 		/* Genre */
 		TreeViewColumn genreColumn = new TreeViewColumn();
@@ -54,31 +61,49 @@ public partial class MainWindow : Gtk.Window
 		
 		CellRendererText genreCell = new CellRendererText();
 		genreColumn.PackStart(genreCell, true);
-		genreColumn.AddAttribute(genreCell, "text", 4);
+		genreColumn.AddAttribute(genreCell, "text", 6);
 		
-		
+		SearchResults.AppendColumn(playButtonColumn);
 		SearchResults.AppendColumn(trackTitleColumn);
 		SearchResults.AppendColumn(userColumn);
 		SearchResults.AppendColumn(timeColumn);
 		SearchResults.AppendColumn(createdColumn);
 		SearchResults.AppendColumn(genreColumn);
 			
-		_searchResultStore = new ListStore(typeof (string), typeof(string), typeof (string), typeof(string), typeof(string));
+		_searchResultStore = new ListStore(
+		                                   typeof(Track), //the track itself
+		                                   typeof(Gdk.Pixbuf), //button
+		                                   typeof(string), //title
+		                                   typeof(string), //duration
+		                                   typeof(string), //username
+		                                   typeof(string), //date_created
+		                                   typeof(string)); // genre
+		
 		SearchResults.Model = _searchResultStore;
+		
+		SearchResults.Selection.Changed += delegate(object sender, EventArgs e) {
+			TreeSelection selection = sender as TreeSelection;
+			TreeIter ti;
+			selection.GetSelected(out ti);
+			Track t = _searchResultStore.GetValue(ti, 0) as Track;
+			
+			Waveform.Pixbuf = NetHelper.LoadWaveform(t.waveform_url);
+		};
 		
 		SearchButton.Clicked += delegate(object sender, EventArgs e) {
 			_searchResultStore.Clear();
 			
 			SoundCloudRestClient rc = new SoundCloudRestClient();
-			string textToSearch = SearchTextBox.Buffer.Text;
-			List<Track> tracks = rc.SearchCollection<Track>(textToSearch, 10);
+			List<Track> tracks = rc.SearchCollection<Track>(SearchTextBox.Text, 25);
 			
 			tracks.ForEach(t => {
 				
 				TimeSpan duration = TimeSpan.FromSeconds(t.duration / 1000);
 				string sDuration = String.Format("{0}:{1}", duration.Minutes.ToString("00"), duration.Seconds.ToString("00"));
 				
-				_searchResultStore.AppendValues (
+				_searchResultStore.AppendValues (				                               
+				                                t,
+				                              	new Gdk.Pixbuf("Images/TreeViewRupertIcon.png"),
 				    							t.title,
 				    							sDuration,                      
 												t.user.username,
@@ -87,13 +112,9 @@ public partial class MainWindow : Gtk.Window
 												);
 				
 			});
-			
-			SearchResults.ShowAll();
 		};
 	}
 
-	
-	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
 		Application.Quit ();

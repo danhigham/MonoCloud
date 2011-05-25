@@ -1,24 +1,25 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" ctype="Workspace" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MonoSoundCloud.Tests/APITests.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MonoCloud/MainWindow.cs" ctype="Workbench">
     <Files>
-      <File FileName="MonoCloud/Main.cs" Line="3" Column="1" />
-      <File FileName="MonoSoundCloud/Entities/Track.cs" Line="72" Column="4" />
-      <File FileName="MonoSoundCloud.Tests/APITests.cs" Line="22" Column="63" />
-      <File FileName="MonoSoundCloud/SoundCloudRestClient.cs" Line="47" Column="36" />
+      <File FileName="MonoCloud/MainWindow.cs" Line="74" Column="64" />
+      <File FileName="MonoSoundCloud/Entities/Track.cs" Line="13" Column="25" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="MonoCloud" expanded="True" />
-          <Node name="MonoSoundCloud" expanded="True" />
-          <Node name="MonoSoundCloud.Tests" expanded="True">
-            <Node name="APITests.cs" selected="True" />
+          <Node name="MonoCloud" expanded="True">
+            <Node name="UserInterface" expanded="True" />
+            <Node name="MainWindow.cs" selected="True" />
           </Node>
+          <Node name="MonoSoundCloud" expanded="True">
+            <Node name="Entities" expanded="True" />
+          </Node>
+          <Node name="MonoSoundCloud.Tests" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
-        <State expanded="True">
+        <State expanded="True" selected="True">
           <Node name="MonoSoundCloud" expanded="True">
             <Node name="References" expanded="True">
               <Node name="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" expanded="True">
@@ -39,13 +40,7 @@
       </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
         <State expanded="True">
-          <Node name="MonoSoundCloud.Tests" expanded="True">
-            <Node name="MonoSoundCloud" expanded="True">
-              <Node name="Tests" expanded="True">
-                <Node name="APITests" expanded="True" selected="True" />
-              </Node>
-            </Node>
-          </Node>
+          <Node name="MonoSoundCloud.Tests" selected="True" />
         </State>
       </Pad>
     </Pads>
@@ -53,5 +48,7 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches ctype="PinnedWatchStore" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches ctype="PinnedWatchStore">
+    <Watch file="MonoSoundCloud.Tests/APITests.cs" line="23" offsetX="122" offsetY="164" expression="tracks" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>
