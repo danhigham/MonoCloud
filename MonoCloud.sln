@@ -7,12 +7,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoSoundCloud", "MonoSound
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoSoundCloud.Tests", "MonoSoundCloud.Tests\MonoSoundCloud.Tests.csproj", "{C02EA7DF-16BB-4A51-8AA9-F9C0D264C23A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mp3Sharp", "mp3sharp\Mp3Sharp.csproj", "{361EED31-977F-437B-B4ED-837A3CD9BA0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{361EED31-977F-437B-B4ED-837A3CD9BA0A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{361EED31-977F-437B-B4ED-837A3CD9BA0A}.Debug|x86.Build.0 = Debug|Any CPU
+		{361EED31-977F-437B-B4ED-837A3CD9BA0A}.Release|x86.ActiveCfg = Release|Any CPU
+		{361EED31-977F-437B-B4ED-837A3CD9BA0A}.Release|x86.Build.0 = Release|Any CPU
 		{AF6F3BC4-7188-4A48-A916-7E31EF88CEE9}.Debug|x86.ActiveCfg = Debug|x86
 		{AF6F3BC4-7188-4A48-A916-7E31EF88CEE9}.Debug|x86.Build.0 = Debug|x86
 		{AF6F3BC4-7188-4A48-A916-7E31EF88CEE9}.Release|x86.ActiveCfg = Release|x86
