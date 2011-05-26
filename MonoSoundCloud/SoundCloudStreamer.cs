@@ -68,9 +68,14 @@ namespace MonoSoundCloud
 			StartTimecodeUpdate();	
 		}
 		
+		public void StopAudio (){
+			if (_playBin != null) _playBin.SetState(State.Null);
+		}
+		
 		private void StartTimecodeUpdate()
 		{
 			_updateThread = new Thread(() => {
+				Console.WriteLine("Starting timecode thread");
 				do 
 				{
 					if (_playBin != null)
@@ -115,6 +120,7 @@ namespace MonoSoundCloud
 			// do any cleaning up here
 			
 			StopTimecodeUpdate();
+			StopAudio();
 			
 			// stop the garbage collector from cleaning up twice
 			GC.SuppressFinalize(this);

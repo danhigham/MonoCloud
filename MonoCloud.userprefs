@@ -1,20 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" ctype="Workspace" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MonoCloud/MainWindow.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MonoSoundCloud/SoundCloudStreamer.cs" ctype="Workbench">
     <Files>
       <File FileName="MonoCloud/MainWindow.cs" Line="52" Column="3" />
       <File FileName="MonoSoundCloud/Entities/Track.cs" Line="13" Column="25" />
       <File FileName="MonoSoundCloud/NetHelper.cs" Line="27" Column="1" />
-      <File FileName="MonoSoundCloud/SoundCloudStreamer.cs" Line="1" Column="1" />
+      <File FileName="MonoSoundCloud/SoundCloudStreamer.cs" Line="84" Column="21" />
       <File FileName="../../src/gstreamer-sharp/samples/GtkVideoPlayer.cs" Line="256" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="MonoCloud" expanded="True">
-            <Node name="MainWindow.cs" selected="True" />
+          <Node name="MonoCloud" expanded="True" />
+          <Node name="MonoSoundCloud" expanded="True">
+            <Node name="SoundCloudStreamer.cs" selected="True" />
           </Node>
-          <Node name="MonoSoundCloud" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
