@@ -40,6 +40,10 @@
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Package>gtk-sharp-2.0</Package>
     </Reference>
+    <Reference Include="gstreamer-sharp, Version=0.9.3.0, Culture=neutral, PublicKeyToken=4956b48baf980190">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\src\gstreamer-sharp\gstreamer-sharp\gstreamer-sharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -49,6 +53,7 @@
     <Compile Include="Entities\Playlist.cs" />
     <Compile Include="Entities\ISoundCloudEntity.cs" />
     <Compile Include="NetHelper.cs" />
+    <Compile Include="SoundCloudStreamer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -37,13 +37,14 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.HScale" id="hscale3">
+              <widget class="Gtk.HScale" id="VolumeControl">
                 <property name="MemberName" />
                 <property name="WidthRequest">80</property>
                 <property name="CanFocus">True</property>
-                <property name="Upper">100</property>
-                <property name="PageIncrement">10</property>
-                <property name="StepIncrement">1</property>
+                <property name="Upper">1</property>
+                <property name="PageIncrement">0.1</property>
+                <property name="StepIncrement">0.01</property>
+                <property name="Value">0.8</property>
                 <property name="DrawValue">False</property>
                 <property name="Digits">0</property>
                 <property name="ValuePos">Top</property>
@@ -141,13 +142,47 @@
           <widget class="Gtk.Image" id="Waveform">
             <property name="MemberName" />
             <property name="HeightRequest">80</property>
+            <property name="Xpad">4</property>
+            <property name="Xalign">0</property>
           </widget>
           <packing>
             <property name="Position">2</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
-            <property name="Padding">3</property>
+            <property name="Padding">4</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Statusbar" id="statusbar2">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <property name="BorderWidth">3</property>
+            <child>
+              <widget class="Gtk.Label" id="TimecodeLabel">
+                <property name="MemberName" />
+                <property name="WidthRequest">100</property>
+                <property name="Xalign">0</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder />
+            </child>
+            <child>
+              <placeholder />
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">3</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
           </packing>
         </child>
       </widget>

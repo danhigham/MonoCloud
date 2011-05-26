@@ -9,7 +9,7 @@ public partial class MainWindow
 
 	private global::Gtk.Label label2;
 
-	private global::Gtk.HScale hscale3;
+	private global::Gtk.HScale VolumeControl;
 
 	private global::Gtk.HBox hbox4;
 
@@ -26,6 +26,10 @@ public partial class MainWindow
 	private global::Gtk.Fixed fixed6;
 
 	private global::Gtk.Image Waveform;
+
+	private global::Gtk.Statusbar statusbar2;
+
+	private global::Gtk.Label TimecodeLabel;
 
 	protected virtual void Build ()
 	{
@@ -55,18 +59,19 @@ public partial class MainWindow
 		w1.Expand = false;
 		w1.Fill = false;
 		// Container child hbox5.Gtk.Box+BoxChild
-		this.hscale3 = new global::Gtk.HScale (null);
-		this.hscale3.WidthRequest = 80;
-		this.hscale3.CanFocus = true;
-		this.hscale3.Name = "hscale3";
-		this.hscale3.Adjustment.Upper = 100;
-		this.hscale3.Adjustment.PageIncrement = 10;
-		this.hscale3.Adjustment.StepIncrement = 1;
-		this.hscale3.DrawValue = false;
-		this.hscale3.Digits = 0;
-		this.hscale3.ValuePos = ((global::Gtk.PositionType)(2));
-		this.hbox5.Add (this.hscale3);
-		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.hscale3]));
+		this.VolumeControl = new global::Gtk.HScale (null);
+		this.VolumeControl.WidthRequest = 80;
+		this.VolumeControl.CanFocus = true;
+		this.VolumeControl.Name = "VolumeControl";
+		this.VolumeControl.Adjustment.Upper = 1;
+		this.VolumeControl.Adjustment.PageIncrement = 0.1;
+		this.VolumeControl.Adjustment.StepIncrement = 0.01;
+		this.VolumeControl.Adjustment.Value = 0.8;
+		this.VolumeControl.DrawValue = false;
+		this.VolumeControl.Digits = 0;
+		this.VolumeControl.ValuePos = ((global::Gtk.PositionType)(2));
+		this.hbox5.Add (this.VolumeControl);
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.VolumeControl]));
 		w2.Position = 1;
 		// Container child hbox5.Gtk.Box+BoxChild
 		this.hbox4 = new global::Gtk.HBox ();
@@ -149,12 +154,34 @@ public partial class MainWindow
 		this.Waveform = new global::Gtk.Image ();
 		this.Waveform.HeightRequest = 80;
 		this.Waveform.Name = "Waveform";
+		this.Waveform.Xpad = 4;
+		this.Waveform.Xalign = 0f;
 		this.vbox2.Add (this.Waveform);
 		global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.Waveform]));
 		w19.Position = 2;
 		w19.Expand = false;
 		w19.Fill = false;
-		w19.Padding = ((uint)(3));
+		w19.Padding = ((uint)(4));
+		// Container child vbox2.Gtk.Box+BoxChild
+		this.statusbar2 = new global::Gtk.Statusbar ();
+		this.statusbar2.Name = "statusbar2";
+		this.statusbar2.Spacing = 6;
+		this.statusbar2.BorderWidth = ((uint)(3));
+		// Container child statusbar2.Gtk.Box+BoxChild
+		this.TimecodeLabel = new global::Gtk.Label ();
+		this.TimecodeLabel.WidthRequest = 100;
+		this.TimecodeLabel.Name = "TimecodeLabel";
+		this.TimecodeLabel.Xalign = 0f;
+		this.statusbar2.Add (this.TimecodeLabel);
+		global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.statusbar2[this.TimecodeLabel]));
+		w20.Position = 0;
+		w20.Expand = false;
+		w20.Fill = false;
+		this.vbox2.Add (this.statusbar2);
+		global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.statusbar2]));
+		w21.Position = 3;
+		w21.Expand = false;
+		w21.Fill = false;
 		this.Add (this.vbox2);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
