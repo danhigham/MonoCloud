@@ -38,13 +38,10 @@ public partial class MainWindow : Gtk.Window
 			TreeIter ti;
 			
 			selection.GetSelected(out ti);
+			_currentTreeIter = ti;
 			Track track = _searchResultStore.GetValue(ti, 0) as Track;
 			
-			if (track != null) {
-				DisplayTrackInfo(track);
-			
-				//PlayTrack (ti);
-			}
+			if (track != null) DisplayTrackInfo(track);
 		};
 		
 		/* Volume change */
@@ -80,11 +77,30 @@ public partial class MainWindow : Gtk.Window
 		                                             "Images/play_button.xpm", //play
 		                                             "Images/pause_button.xpm"); //pause
 		
+		button.Clicked += delegate(object sender, PlayPauseButtonEventArgs e) {
+			Console.WriteLine(_currentTreeIter.Stamp);
+			
+			if (_currentTreeIter.Stamp != 0) {
+				if (!e.IsPaused)
+					PlayTrack(_currentTreeIter);
+				else
+				{
+					if (_streamer != null)
+						_streamer.Pause();
+				}
+			} else button.SwitchState();
+				
+		};
+		
 		XPMButton backButton = new XPMButton("Images/back_button.xpm", 
 		                                     "Images/back_button_pushed.xpm");                                       
 		                                         
 		XPMButton forwardButton = new XPMButton("Images/forward_button.xpm", 
-		                                     "Images/forward_button_pushed.xpm");                                       
+		                                     "Images/forward_button_pushed.xpm");
+		
+		forwardButton.Clicked+= delegate(object sender, ButtonReleaseEventArgs e) {
+			NextTrack();	
+		};
 
 		bottomBar.PackStart(backButton, false, false, 0);
 		bottomBar.PackStart(button, false, false, 0);
@@ -93,6 +109,9 @@ public partial class MainWindow : Gtk.Window
 	
 	private void RunSearch (string query) 
 	{
+		_currentTrack = null;
+		_currentTreeIter.Stamp = 0;
+		
 		SoundCloudRestClient rc = new SoundCloudRestClient();
 		List<Track> tracks = rc.SearchCollection<Track>(query, 25);
 		
@@ -134,7 +153,6 @@ public partial class MainWindow : Gtk.Window
 				
 				Pixbuf artwork = NetHelper.LoadImage(url);
 				Artwork.Pixbuf = artwork.ScaleSimple(200, 200, Gdk.InterpType.Bilinear);
-			
 			}
 			
 			if (track.user.avatar_url != null) {
@@ -149,10 +167,23 @@ public partial class MainWindow : Gtk.Window
 		}).Start();
 	}
 	
+	private void NextTrack()
+	{
+		if (_currentTreeIter.Stamp != 0)
+			if (_searchResultStore.IterNext(ref _currentTreeIter))
+				PlayTrack (_currentTreeIter);
+	}
+	
+	private void PreviousTrack()
+	{
+		if (_currentTreeIter.Stamp != 0) {
+			//if (_searchResultStore.	
+		}
+			
+	}
+	
 	private void PlayTrack(TreeIter treeIter)
 	{
-		_currentTreeIter = treeIter;
-		
 		Track track = _searchResultStore.GetValue(treeIter, 0) as Track;
 		_currentTrack = track;
 		
@@ -175,7 +206,6 @@ public partial class MainWindow : Gtk.Window
 				//Move on to the next track
 				if (_searchResultStore.IterNext(ref _currentTreeIter))
 					PlayTrack (_currentTreeIter);
-				
 			};
 		}
 		

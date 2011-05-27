@@ -17,7 +17,8 @@ namespace MonoSoundCloud
 		private PlayBin2 _playBin;
 		private Thread _updateThread;
 		private double _initialVolume;
-	
+		private string _currentUrl;
+		
 		public event EventHandler<TimecodeUpdateArgs> TimecodeUpdated;
 		public event EventHandler<EventArgs> TrackEnded;
 		
@@ -28,8 +29,18 @@ namespace MonoSoundCloud
 			Gst.Application.Init();
 		}
 		
+		public void Pause(){
+			if (_playBin != null) _playBin.SetState(State.Paused);	
+		}
+		
 		public void PlayAudioStream (string url)
 		{
+			if (_currentUrl == url && _playBin != null) {
+				_playBin.SetState(State.Playing);
+				return;
+			}
+			    
+			_currentUrl = url;
 			if (_playBin != null) {
 				_playBin.SetState(Gst.State.Null);
 				_playBin.SetVolume(StreamVolumeFormat.Linear, _initialVolume);
@@ -65,7 +76,8 @@ namespace MonoSoundCloud
 			 }));
 			
 			// Play the stream
-			_playBin.SetState(Gst.State.Playing);
+			if (_playBin.CurrentState != State.Paused)
+				_playBin.SetState(State.Playing);
 			
 			// Start rendering the waveform
 			StartTimecodeUpdate();	
