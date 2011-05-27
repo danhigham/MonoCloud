@@ -3,6 +3,8 @@ using Gtk;
 using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
+using MonoCloud;
 using MonoSoundCloud;
 using MonoSoundCloud.Entities;
 
@@ -14,12 +16,18 @@ public partial class MainWindow : Gtk.Window
 	private ListStore _searchResultStore;
 	private Gdk.Pixbuf _currentWaveform;
 	private Track _currentTrack;
+	private TreeIter _currentTreeIter;
 	private SoundCloudStreamer _streamer;
+	
+	private Dictionary<string, Gdk.Pixmap> _buttons;
 	
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
-		Build ();
-				
+		Build ();	
+		
+		LoadButtons();	
+		InitButtons();
+		
 		SetupResultList();
 		
 		/* Event handler for changing selection in the list */
@@ -28,29 +36,16 @@ public partial class MainWindow : Gtk.Window
 			
 			TreeSelection selection = sender as TreeSelection;
 			TreeIter ti;
+			
 			selection.GetSelected(out ti);
-			Track t = _searchResultStore.GetValue(ti, 0) as Track;
-			_currentTrack = t;
-			_currentWaveform = NetHelper.LoadImage(t.waveform_url);
+			Track track = _searchResultStore.GetValue(ti, 0) as Track;
 			
-			Waveform.Pixbuf = RenderWaveform(_currentWaveform, 0, 0);
+			if (track != null) {
+				DisplayTrackInfo(track);
 			
-			if (_streamer == null) {
-				_streamer = new SoundCloudStreamer(VolumeControl.Value);
-				
-				_streamer.TimecodeUpdated+= delegate(object sender2, TimecodeUpdateArgs e2) {
-					/* Update the waveform graphic */
-					
-					Waveform.Pixbuf = RenderWaveform(_currentWaveform, e2.ElapsedTime, e2.Duration);
-					
-					TimecodeLabel.Text = String.Format("{0} / {1}", TimeString(e2.ElapsedTime), TimeString(e2.Duration));
-				};
+				//PlayTrack (ti);
 			}
-			
-			_streamer.PlayAudioStream(t.stream_url);
 		};
-		
-		
 		
 		/* Volume change */
 		
@@ -63,29 +58,131 @@ public partial class MainWindow : Gtk.Window
 		SearchButton.Clicked += delegate(object sender, EventArgs e) {
 			_searchResultStore.Clear();
 			
-			SoundCloudRestClient rc = new SoundCloudRestClient();
-			List<Track> tracks = rc.SearchCollection<Track>(SearchTextBox.Text, 25);
-			
-			tracks.ForEach(t => {
-				
-				TimeSpan duration = TimeSpan.FromSeconds(t.duration / 1000);
-				string sDuration = String.Format("{0}:{1}", duration.Minutes.ToString("00"), duration.Seconds.ToString("00"));
-				
-				_searchResultStore.AppendValues (				                               
-				                                t,
-				                              	new Gdk.Pixbuf("Images/TreeViewRupertIcon.png"),
-				    							t.title,
-				    							sDuration,                      
-												t.user.username,
-				    							PrettyDate(t.created_at),
-				                                t.genre
-												);
-				
-			});
+			RunSearch(SearchTextBox.Text);
 		};
 		
+		//Run default search
+		RunSearch("");
+		
 	}
+	
+	private void LoadButtons () 
+	{
+		_buttons = new Dictionary<string, Gdk.Pixmap>();
+		_buttons.Add("play", Gdk.Pixmap.CreateFromXpm(this.GdkWindow, "Images/gtk.xpm"));
+		_buttons.Add("play_hover", Gdk.Pixmap.CreateFromXpm(this.GdkWindow, "Images/play_button_hover.xpm"));
+		            
+	}
+	
+	private void InitButtons ()
+	{
+		PlayPauseButton button = new PlayPauseButton(
+		                                             "Images/play_button.xpm", //play
+		                                             "Images/pause_button.xpm"); //pause
+		
+		XPMButton backButton = new XPMButton("Images/back_button.xpm", 
+		                                     "Images/back_button_pushed.xpm");                                       
+		                                         
+		XPMButton forwardButton = new XPMButton("Images/forward_button.xpm", 
+		                                     "Images/forward_button_pushed.xpm");                                       
 
+		bottomBar.PackStart(backButton, false, false, 0);
+		bottomBar.PackStart(button, false, false, 0);
+		bottomBar.PackStart(forwardButton, false, false, 0);
+	}
+	
+	private void RunSearch (string query) 
+	{
+		SoundCloudRestClient rc = new SoundCloudRestClient();
+		List<Track> tracks = rc.SearchCollection<Track>(query, 25);
+		
+		tracks.ForEach(t => {
+			
+			TimeSpan duration = TimeSpan.FromSeconds(t.duration / 1000);
+			string sDuration = String.Format("{0}:{1}", duration.Minutes.ToString("00"), duration.Seconds.ToString("00"));
+			
+			_searchResultStore.AppendValues (				                               
+			                                t,
+			                              	new Gdk.Pixbuf("Images/TreeViewRupertIcon.png"),
+			    							t.title,
+			    							sDuration,                      
+											t.user.username,
+			    							PrettyDate(t.created_at),
+			                                t.genre
+											);
+			
+		});
+		
+		TreeIter iter;
+		_searchResultStore.GetIterFirst(out iter);
+		
+		if (iter.Stamp > 0)
+		{
+			SearchResults.Selection.SelectIter(iter);
+			Track track = _searchResultStore.GetValue(iter, 0) as Track;
+			DisplayTrackInfo (track);
+		}
+	}
+	
+	private void DisplayTrackInfo (Track track) 
+	{
+		new Thread(() => {
+			TrackInfo.Text = track.title;
+			
+			if (track.artwork_url != null) {
+				string url = track.artwork_url.Replace("-large", "-crop");
+				
+				Pixbuf artwork = NetHelper.LoadImage(url);
+				Artwork.Pixbuf = artwork.ScaleSimple(200, 200, Gdk.InterpType.Bilinear);
+			
+			}
+			
+			if (track.user.avatar_url != null) {
+				string url = track.user.avatar_url.Replace("-large", "-badge");
+				Avatar.Pixbuf = NetHelper.LoadImage(url);
+			}
+			
+			UploadedBy.Markup = UIHelper.SmallText(String.Format("Uploaded by {0}\n{1}", track.user.username, track.created_at.ToShortDateString()));
+			
+			_currentWaveform = NetHelper.LoadImage(track.waveform_url);
+			Waveform.Pixbuf = RenderWaveform(_currentWaveform, 0, 0);
+		}).Start();
+	}
+	
+	private void PlayTrack(TreeIter treeIter)
+	{
+		_currentTreeIter = treeIter;
+		
+		Track track = _searchResultStore.GetValue(treeIter, 0) as Track;
+		_currentTrack = track;
+		
+		/* Change selection on search result list */
+		SearchResults.Selection.SelectIter(treeIter);
+		
+		if (_streamer == null) {
+			_streamer = new SoundCloudStreamer(VolumeControl.Value);
+			
+			_streamer.TimecodeUpdated+= delegate(object sender2, TimecodeUpdateArgs e2) {
+				/* Update the waveform graphic */
+				
+				Waveform.Pixbuf = RenderWaveform(_currentWaveform, e2.ElapsedTime, e2.Duration);
+				
+				TimecodeLabel.Text = String.Format("{0} / {1}", TimeString(e2.ElapsedTime), TimeString(e2.Duration));
+			};
+			
+			_streamer.TrackEnded+= delegate(object sender2, EventArgs e2) {
+				
+				//Move on to the next track
+				if (_searchResultStore.IterNext(ref _currentTreeIter))
+					PlayTrack (_currentTreeIter);
+				
+			};
+		}
+		
+		_streamer.PlayAudioStream(_currentTrack.stream_url);
+				
+	}
+	
 	private Pixbuf RenderWaveform (Pixbuf original, long elapsed, long total)	
 	{
 		uint highlightColor = 0xf46c13FF;

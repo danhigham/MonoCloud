@@ -17,15 +17,29 @@ public partial class MainWindow
 
 	private global::Gtk.Button SearchButton;
 
-	private global::Gtk.HPaned hpaned3;
+	private global::Gtk.HBox hbox1;
 
-	private global::Gtk.ScrolledWindow GtkScrolledWindow1;
+	private global::Gtk.ScrolledWindow GtkScrolledWindow;
 
 	private global::Gtk.TreeView SearchResults;
 
-	private global::Gtk.Fixed fixed6;
+	private global::Gtk.Fixed fixed2;
+
+	private global::Gtk.Image Artwork;
+
+	private global::Gtk.Label TrackInfo;
+
+	private global::Gtk.Image Avatar;
+
+	private global::Gtk.Label UploadedBy;
+
+	private global::Gtk.HBox bottomBar;
 
 	private global::Gtk.Image Waveform;
+
+	private global::Gtk.Fixed fixed1;
+
+	private global::Gtk.HBox ControlButtons;
 
 	private global::Gtk.Statusbar statusbar2;
 
@@ -36,12 +50,11 @@ public partial class MainWindow
 		global::Stetic.Gui.Initialize (this);
 		// Widget MainWindow
 		this.Name = "MainWindow";
-		this.Title = global::Mono.Unix.Catalog.GetString ("MainWindow");
+		this.Title = global::Mono.Unix.Catalog.GetString ("MonoCloud");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.vbox2 = new global::Gtk.VBox ();
 		this.vbox2.Name = "vbox2";
-		this.vbox2.Spacing = 2;
 		this.vbox2.BorderWidth = ((uint)(3));
 		// Container child vbox2.Gtk.Box+BoxChild
 		this.hbox5 = new global::Gtk.HBox ();
@@ -60,7 +73,7 @@ public partial class MainWindow
 		w1.Fill = false;
 		// Container child hbox5.Gtk.Box+BoxChild
 		this.VolumeControl = new global::Gtk.HScale (null);
-		this.VolumeControl.WidthRequest = 80;
+		this.VolumeControl.WidthRequest = 150;
 		this.VolumeControl.CanFocus = true;
 		this.VolumeControl.Name = "VolumeControl";
 		this.VolumeControl.Adjustment.Upper = 1;
@@ -73,6 +86,7 @@ public partial class MainWindow
 		this.hbox5.Add (this.VolumeControl);
 		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.VolumeControl]));
 		w2.Position = 1;
+		w2.Expand = false;
 		// Container child hbox5.Gtk.Box+BoxChild
 		this.hbox4 = new global::Gtk.HBox ();
 		this.hbox4.HeightRequest = 40;
@@ -124,44 +138,114 @@ public partial class MainWindow
 		w14.Expand = false;
 		w14.Fill = false;
 		// Container child vbox2.Gtk.Box+BoxChild
-		this.hpaned3 = new global::Gtk.HPaned ();
-		this.hpaned3.CanFocus = true;
-		this.hpaned3.Name = "hpaned3";
-		this.hpaned3.Position = 442;
-		this.hpaned3.BorderWidth = ((uint)(3));
-		// Container child hpaned3.Gtk.Paned+PanedChild
-		this.GtkScrolledWindow1 = new global::Gtk.ScrolledWindow ();
-		this.GtkScrolledWindow1.Name = "GtkScrolledWindow1";
-		this.GtkScrolledWindow1.ShadowType = ((global::Gtk.ShadowType)(1));
-		// Container child GtkScrolledWindow1.Gtk.Container+ContainerChild
+		this.hbox1 = new global::Gtk.HBox ();
+		this.hbox1.Name = "hbox1";
+		this.hbox1.Spacing = 6;
+		this.hbox1.BorderWidth = ((uint)(3));
+		// Container child hbox1.Gtk.Box+BoxChild
+		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
+		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
 		this.SearchResults = new global::Gtk.TreeView ();
 		this.SearchResults.CanFocus = true;
 		this.SearchResults.Name = "SearchResults";
 		this.SearchResults.SearchColumn = 2;
-		this.GtkScrolledWindow1.Add (this.SearchResults);
-		this.hpaned3.Add (this.GtkScrolledWindow1);
-		global::Gtk.Paned.PanedChild w16 = ((global::Gtk.Paned.PanedChild)(this.hpaned3[this.GtkScrolledWindow1]));
-		w16.Resize = false;
-		// Container child hpaned3.Gtk.Paned+PanedChild
-		this.fixed6 = new global::Gtk.Fixed ();
-		this.fixed6.Name = "fixed6";
-		this.fixed6.HasWindow = false;
-		this.hpaned3.Add (this.fixed6);
-		this.vbox2.Add (this.hpaned3);
-		global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hpaned3]));
-		w18.Position = 1;
+		this.GtkScrolledWindow.Add (this.SearchResults);
+		this.hbox1.Add (this.GtkScrolledWindow);
+		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.GtkScrolledWindow]));
+		w16.Position = 0;
+		// Container child hbox1.Gtk.Box+BoxChild
+		this.fixed2 = new global::Gtk.Fixed ();
+		this.fixed2.WidthRequest = 200;
+		this.fixed2.Name = "fixed2";
+		this.fixed2.HasWindow = false;
+		// Container child fixed2.Gtk.Fixed+FixedChild
+		this.Artwork = new global::Gtk.Image ();
+		this.Artwork.WidthRequest = 200;
+		this.Artwork.HeightRequest = 200;
+		this.Artwork.Name = "Artwork";
+		this.fixed2.Add (this.Artwork);
+		global::Gtk.Fixed.FixedChild w17 = ((global::Gtk.Fixed.FixedChild)(this.fixed2[this.Artwork]));
+		w17.Y = 42;
+		// Container child fixed2.Gtk.Fixed+FixedChild
+		this.TrackInfo = new global::Gtk.Label ();
+		this.TrackInfo.WidthRequest = 200;
+		this.TrackInfo.HeightRequest = 40;
+		this.TrackInfo.Name = "TrackInfo";
+		this.TrackInfo.Xalign = 0f;
+		this.TrackInfo.Yalign = 0f;
+		this.TrackInfo.Wrap = true;
+		this.fixed2.Add (this.TrackInfo);
+		// Container child fixed2.Gtk.Fixed+FixedChild
+		this.Avatar = new global::Gtk.Image ();
+		this.Avatar.WidthRequest = 50;
+		this.Avatar.HeightRequest = 50;
+		this.Avatar.Name = "Avatar";
+		this.fixed2.Add (this.Avatar);
+		global::Gtk.Fixed.FixedChild w19 = ((global::Gtk.Fixed.FixedChild)(this.fixed2[this.Avatar]));
+		w19.Y = 250;
+		// Container child fixed2.Gtk.Fixed+FixedChild
+		this.UploadedBy = new global::Gtk.Label ();
+		this.UploadedBy.WidthRequest = 145;
+		this.UploadedBy.HeightRequest = 50;
+		this.UploadedBy.Name = "UploadedBy";
+		this.UploadedBy.Xalign = 0f;
+		this.UploadedBy.Yalign = 0f;
+		this.UploadedBy.Wrap = true;
+		this.fixed2.Add (this.UploadedBy);
+		global::Gtk.Fixed.FixedChild w20 = ((global::Gtk.Fixed.FixedChild)(this.fixed2[this.UploadedBy]));
+		w20.X = 55;
+		w20.Y = 250;
+		this.hbox1.Add (this.fixed2);
+		global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.fixed2]));
+		w21.Position = 1;
+		w21.Expand = false;
+		w21.Fill = false;
+		this.vbox2.Add (this.hbox1);
+		global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox1]));
+		w22.Position = 1;
 		// Container child vbox2.Gtk.Box+BoxChild
+		this.bottomBar = new global::Gtk.HBox ();
+		this.bottomBar.Name = "bottomBar";
+		this.bottomBar.Spacing = 6;
+		this.bottomBar.BorderWidth = ((uint)(4));
+		// Container child bottomBar.Gtk.Box+BoxChild
 		this.Waveform = new global::Gtk.Image ();
+		this.Waveform.WidthRequest = 550;
 		this.Waveform.HeightRequest = 80;
 		this.Waveform.Name = "Waveform";
 		this.Waveform.Xpad = 4;
 		this.Waveform.Xalign = 0f;
-		this.vbox2.Add (this.Waveform);
-		global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.Waveform]));
-		w19.Position = 2;
-		w19.Expand = false;
-		w19.Fill = false;
-		w19.Padding = ((uint)(4));
+		this.bottomBar.Add (this.Waveform);
+		global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.bottomBar[this.Waveform]));
+		w23.Position = 0;
+		w23.Expand = false;
+		w23.Fill = false;
+		// Container child bottomBar.Gtk.Box+BoxChild
+		this.fixed1 = new global::Gtk.Fixed ();
+		this.fixed1.Name = "fixed1";
+		this.fixed1.HasWindow = false;
+		this.bottomBar.Add (this.fixed1);
+		global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.bottomBar[this.fixed1]));
+		w24.Position = 1;
+		// Container child bottomBar.Gtk.Box+BoxChild
+		this.ControlButtons = new global::Gtk.HBox ();
+		this.ControlButtons.WidthRequest = 130;
+		this.ControlButtons.Name = "ControlButtons";
+		this.ControlButtons.Spacing = 2;
+		this.ControlButtons.BorderWidth = ((uint)(6));
+		this.bottomBar.Add (this.ControlButtons);
+		global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.bottomBar[this.ControlButtons]));
+		w25.Position = 2;
+		w25.Fill = false;
+		w25.Padding = ((uint)(30));
+		this.vbox2.Add (this.bottomBar);
+		global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.bottomBar]));
+		w26.Position = 2;
+		w26.Expand = false;
+		w26.Fill = false;
+		w26.Padding = ((uint)(4));
 		// Container child vbox2.Gtk.Box+BoxChild
 		this.statusbar2 = new global::Gtk.Statusbar ();
 		this.statusbar2.Name = "statusbar2";
@@ -173,21 +257,21 @@ public partial class MainWindow
 		this.TimecodeLabel.Name = "TimecodeLabel";
 		this.TimecodeLabel.Xalign = 0f;
 		this.statusbar2.Add (this.TimecodeLabel);
-		global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.statusbar2[this.TimecodeLabel]));
-		w20.Position = 0;
-		w20.Expand = false;
-		w20.Fill = false;
+		global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.statusbar2[this.TimecodeLabel]));
+		w27.Position = 0;
+		w27.Expand = false;
+		w27.Fill = false;
 		this.vbox2.Add (this.statusbar2);
-		global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.statusbar2]));
-		w21.Position = 3;
-		w21.Expand = false;
-		w21.Fill = false;
+		global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.statusbar2]));
+		w28.Position = 3;
+		w28.Expand = false;
+		w28.Fill = false;
 		this.Add (this.vbox2);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 592;
-		this.DefaultHeight = 460;
+		this.DefaultWidth = 768;
+		this.DefaultHeight = 499;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 	}

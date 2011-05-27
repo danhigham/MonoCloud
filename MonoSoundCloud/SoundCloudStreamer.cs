@@ -19,6 +19,7 @@ namespace MonoSoundCloud
 		private double _initialVolume;
 	
 		public event EventHandler<TimecodeUpdateArgs> TimecodeUpdated;
+		public event EventHandler<EventArgs> TrackEnded;
 		
 		public SoundCloudStreamer (double initalVolumeLevel)
 		{
@@ -51,10 +52,12 @@ namespace MonoSoundCloud
 		        		//loop.Quit ();
 		        		break;
 		      		case Gst.MessageType.Eos:
-		       			Console.WriteLine ("Thank you, come again");
+		       			Console.WriteLine ("Stream finished.");
 				
-						//TODO : Move on to next track in the playlist
 		        		_playBin.SetState (Gst.State.Null);
+						if (TrackEnded != null)
+							TrackEnded (this, new EventArgs());
+					
 		        		break;
 		    	}
 		
@@ -75,6 +78,7 @@ namespace MonoSoundCloud
 		private void StartTimecodeUpdate()
 		{
 			_updateThread = new Thread(() => {
+				
 				Console.WriteLine("Starting timecode thread");
 				do 
 				{

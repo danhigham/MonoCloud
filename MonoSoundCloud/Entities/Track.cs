@@ -69,6 +69,7 @@ namespace MonoSoundCloud.Entities
 		public int duration { get; set; }
 		public DateTime created_at { get; set; }
 		public string genre { get; set; }
+		
 		public Track ()
 		{
 			

@@ -1,19 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" ctype="Workspace" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MonoSoundCloud/SoundCloudStreamer.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MonoCloud/MainWindow.cs" ctype="Workbench">
     <Files>
-      <File FileName="MonoCloud/MainWindow.cs" Line="52" Column="3" />
-      <File FileName="MonoSoundCloud/Entities/Track.cs" Line="13" Column="25" />
       <File FileName="MonoSoundCloud/NetHelper.cs" Line="27" Column="1" />
-      <File FileName="MonoSoundCloud/SoundCloudStreamer.cs" Line="84" Column="21" />
-      <File FileName="../../src/gstreamer-sharp/samples/GtkVideoPlayer.cs" Line="256" Column="4" />
+      <File FileName="MonoSoundCloud/SoundCloudStreamer.cs" Line="111" Column="30" />
+      <File FileName="MonoCloud/MainWindow.cs" Line="89" Column="12" />
+      <File FileName="MonoCloud/UIHelper.cs" Line="28" Column="39" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="MonoCloud" expanded="True" />
+          <Node name="MonoCloud" expanded="True">
+            <Node name="UserInterface" expanded="True" />
+            <Node name="Images" expanded="True" />
+            <Node name="MainWindow.cs" selected="True" />
+          </Node>
           <Node name="MonoSoundCloud" expanded="True">
-            <Node name="SoundCloudStreamer.cs" selected="True" />
+            <Node name="Entities" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -47,5 +50,7 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches ctype="PinnedWatchStore">
     <Watch file="MonoSoundCloud.Tests/APITests.cs" line="23" offsetX="122" offsetY="164" expression="tracks" liveUpdate="False" />
+    <Watch file="MonoCloud/MainWindow.cs" line="94" offsetX="343" offsetY="1209" expression="track" liveUpdate="False" />
+    <Watch file="MonoCloud/MainWindow.cs" line="87" offsetX="355" offsetY="1118" expression="iter" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>
