@@ -89,6 +89,9 @@ namespace MonoSoundCloud
 		
 		private void StartTimecodeUpdate()
 		{
+			if (_updateThread != null) {
+				_updateThread.Abort();
+			}
 			_updateThread = new Thread(() => {
 				
 				Console.WriteLine("Starting timecode thread");
@@ -104,12 +107,14 @@ namespace MonoSoundCloud
 						_playBin.QueryPosition(ref fmt, out elapsed);
 						_playBin.QueryDuration(ref fmt, out duration);
 						
-						long elapsedSecs = elapsed / 1000000000;
-						long totalSecs = duration / 1000000000;
+						//long elapsedSecs = elapsed / 1000000000;
+						//long totalSecs = duration / 1000000000;
 						
-						if (TimecodeUpdated != null)
+						if (TimecodeUpdated != null) {
+							Gdk.Threads.Enter(); //Run the event through the STA thread to update the front end...
 							TimecodeUpdated(this, new TimecodeUpdateArgs() { ElapsedTime = elapsed, Duration = duration });
-						
+							Gdk.Threads.Leave();
+						}
 						Thread.Sleep(500);
 					}	
 				} while(1==1);	

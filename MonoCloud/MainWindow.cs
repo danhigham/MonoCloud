@@ -122,7 +122,6 @@ public partial class MainWindow : Gtk.Window
 			
 			_searchResultStore.AppendValues (				                               
 			                                t,
-			                              	new Gdk.Pixbuf("Images/TreeViewRupertIcon.png"),
 			    							t.title,
 			    							sDuration,                      
 											t.user.username,
@@ -250,20 +249,13 @@ public partial class MainWindow : Gtk.Window
 		
 	private void SetupResultList() 
 	{
-		/* Play Button */
-		TreeViewColumn playButtonColumn = new TreeViewColumn();
-		
-		CellRendererPixbuf playCell = new CellRendererPixbuf();
-		playButtonColumn.PackStart(playCell, true);
-		playButtonColumn.AddAttribute(playCell, "pixbuf", 1);
-		
 		/* Track Title */
 		TreeViewColumn trackTitleColumn = new TreeViewColumn();
 		trackTitleColumn.Title = "Track Title";
 		
 		CellRendererText trackCell = new CellRendererText();
 		trackTitleColumn.PackStart(trackCell, true);
-		trackTitleColumn.AddAttribute(trackCell, "text", 2);
+		trackTitleColumn.AddAttribute(trackCell, "text", 1);
 		
 		/* Time */
 		TreeViewColumn timeColumn = new TreeViewColumn();
@@ -271,7 +263,7 @@ public partial class MainWindow : Gtk.Window
 		
 		CellRendererText timeCell = new CellRendererText();
 		timeColumn.PackStart(timeCell, true);
-		timeColumn.AddAttribute(timeCell, "text", 3);
+		timeColumn.AddAttribute(timeCell, "text", 2);
 		
 		/* User */
 		TreeViewColumn userColumn = new TreeViewColumn();
@@ -279,7 +271,7 @@ public partial class MainWindow : Gtk.Window
 		
 		CellRendererText userCell = new CellRendererText();
 		userColumn.PackStart(userCell, true);
-		userColumn.AddAttribute(userCell, "text", 4);
+		userColumn.AddAttribute(userCell, "text", 3);
 		
 		/* Created */
 		TreeViewColumn createdColumn = new TreeViewColumn();
@@ -287,7 +279,7 @@ public partial class MainWindow : Gtk.Window
 		
 		CellRendererText createdCell = new CellRendererText();
 		createdColumn.PackStart(createdCell, true);
-		createdColumn.AddAttribute(createdCell, "text", 5);
+		createdColumn.AddAttribute(createdCell, "text", 4);
 		
 		/* Genre */
 		TreeViewColumn genreColumn = new TreeViewColumn();
@@ -295,9 +287,8 @@ public partial class MainWindow : Gtk.Window
 		
 		CellRendererText genreCell = new CellRendererText();
 		genreColumn.PackStart(genreCell, true);
-		genreColumn.AddAttribute(genreCell, "text", 6);
+		genreColumn.AddAttribute(genreCell, "text", 5);
 		
-		SearchResults.AppendColumn(playButtonColumn);
 		SearchResults.AppendColumn(trackTitleColumn);
 		SearchResults.AppendColumn(userColumn);
 		SearchResults.AppendColumn(timeColumn);
@@ -306,7 +297,6 @@ public partial class MainWindow : Gtk.Window
 			
 		_searchResultStore = new ListStore(
 		                                   typeof(Track), //the track itself
-		                                   typeof(Gdk.Pixbuf), //button
 		                                   typeof(string), //title
 		                                   typeof(string), //duration
 		                                   typeof(string), //username
