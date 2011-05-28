@@ -45,6 +45,8 @@ public partial class MainWindow
 
 	private global::Gtk.Label TimecodeLabel;
 
+	private global::Gtk.Label Status;
+
 	protected virtual void Build ()
 	{
 		global::Stetic.Gui.Initialize (this);
@@ -261,11 +263,19 @@ public partial class MainWindow
 		w27.Position = 0;
 		w27.Expand = false;
 		w27.Fill = false;
+		// Container child statusbar2.Gtk.Box+BoxChild
+		this.Status = new global::Gtk.Label ();
+		this.Status.WidthRequest = 450;
+		this.Status.Name = "Status";
+		this.Status.Xalign = 0f;
+		this.statusbar2.Add (this.Status);
+		global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.statusbar2[this.Status]));
+		w28.Position = 2;
 		this.vbox2.Add (this.statusbar2);
-		global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.statusbar2]));
-		w28.Position = 3;
-		w28.Expand = false;
-		w28.Fill = false;
+		global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.statusbar2]));
+		w29.Position = 3;
+		w29.Expand = false;
+		w29.Fill = false;
 		this.Add (this.vbox2);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();

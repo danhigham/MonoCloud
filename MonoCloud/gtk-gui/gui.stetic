@@ -270,10 +270,15 @@
               </packing>
             </child>
             <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
+              <widget class="Gtk.Label" id="Status">
+                <property name="MemberName" />
+                <property name="WidthRequest">450</property>
+                <property name="Xalign">0</property>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">False</property>
+              </packing>
             </child>
           </widget>
           <packing>

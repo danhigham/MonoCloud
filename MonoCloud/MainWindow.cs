@@ -118,7 +118,10 @@ public partial class MainWindow : Gtk.Window
 		tracks.ForEach(t => {
 			
 			TimeSpan duration = TimeSpan.FromSeconds(t.duration / 1000);
-			string sDuration = String.Format("{0}:{1}", duration.Minutes.ToString("00"), duration.Seconds.ToString("00"));
+			string sDuration = 
+				duration.Hours > 0 ?
+								String.Format("{0}:{1}:{2}", duration.Hours.ToString("00"), duration.Minutes.ToString("00"), duration.Seconds.ToString("00")) :
+								String.Format("{0}:{1}", duration.Minutes.ToString("00"), duration.Seconds.ToString("00"));
 			
 			_searchResultStore.AppendValues (				                               
 			                                t,
@@ -152,17 +155,21 @@ public partial class MainWindow : Gtk.Window
 				
 				Pixbuf artwork = NetHelper.LoadImage(url);
 				Artwork.Pixbuf = artwork.ScaleSimple(200, 200, Gdk.InterpType.Bilinear);
+			} else {
+				Artwork.Pixbuf = null;
 			}
 			
 			if (track.user.avatar_url != null) {
 				string url = track.user.avatar_url.Replace("-large", "-badge");
 				Avatar.Pixbuf = NetHelper.LoadImage(url);
+			} else {
+				Avatar.Pixbuf = null;
 			}
 			
 			UploadedBy.Markup = UIHelper.SmallText(String.Format("Uploaded by {0}\n{1}", track.user.username, track.created_at.ToShortDateString()));
 			
-			_currentWaveform = NetHelper.LoadImage(track.waveform_url);
-			Waveform.Pixbuf = RenderWaveform(_currentWaveform, 0, 0);
+			
+			//Waveform.Pixbuf = RenderWaveform(_currentWaveform, 0, 0, track == _currentTrack);
 		}).Start();
 	}
 	
@@ -185,17 +192,21 @@ public partial class MainWindow : Gtk.Window
 	{
 		Track track = _searchResultStore.GetValue(treeIter, 0) as Track;
 		_currentTrack = track;
+		_currentWaveform = NetHelper.LoadImage(track.waveform_url);
+		
+		Status.Text = String.Format("Now playing :- {0}", track.title);
 		
 		/* Change selection on search result list */
 		SearchResults.Selection.SelectIter(treeIter);
 		
 		if (_streamer == null) {
+			Console.WriteLine("Creating streamer");
 			_streamer = new SoundCloudStreamer(VolumeControl.Value);
 			
 			_streamer.TimecodeUpdated+= delegate(object sender2, TimecodeUpdateArgs e2) {
 				/* Update the waveform graphic */
 				
-				Waveform.Pixbuf = RenderWaveform(_currentWaveform, e2.ElapsedTime, e2.Duration);
+				Waveform.Pixbuf = RenderWaveform(_currentWaveform, e2.ElapsedTime, e2.Duration, true);
 				
 				TimecodeLabel.Text = String.Format("{0} / {1}", TimeString(e2.ElapsedTime), TimeString(e2.Duration));
 			};
@@ -212,7 +223,7 @@ public partial class MainWindow : Gtk.Window
 				
 	}
 	
-	private Pixbuf RenderWaveform (Pixbuf original, long elapsed, long total)	
+	private Pixbuf RenderWaveform (Pixbuf original, long elapsed, long total, bool showProgress)	
 	{
 		uint highlightColor = 0xf46c13FF;
 		uint lowlightColor = 0xc9c9c9FF;
@@ -233,7 +244,7 @@ public partial class MainWindow : Gtk.Window
 		Pixbuf bg = new Pixbuf(Gdk.Colorspace.Rgb, true, 8, width, newHeight);
 		bg.Fill(lowlightColor);
 		
-		if (progressWidth > 0) {
+		if (progressWidth > 0 && showProgress) {
 		
 			Pixbuf highlight = new Pixbuf(Gdk.Colorspace.Rgb, true, 8, progressWidth, newHeight);
 			highlight.Fill(highlightColor);
