@@ -201,7 +201,15 @@ public partial class MainWindow : Gtk.Window
 		
 		if (_streamer == null) {
 			Console.WriteLine("Creating streamer");
-			_streamer = new SoundCloudStreamer(VolumeControl.Value);
+			try
+			{
+				_streamer = new SoundCloudStreamer(VolumeControl.Value);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.ToString());
+				return;
+			}
 			
 			_streamer.TimecodeUpdated+= delegate(object sender2, TimecodeUpdateArgs e2) {
 				/* Update the waveform graphic */

@@ -27,6 +27,7 @@ namespace MonoSoundCloud
 			_initialVolume = initalVolumeLevel;
 			
 			Gst.Application.Init();
+			
 		}
 		
 		public void Pause(){
