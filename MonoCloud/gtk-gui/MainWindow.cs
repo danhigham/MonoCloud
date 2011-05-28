@@ -53,6 +53,7 @@ public partial class MainWindow
 		// Widget MainWindow
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString ("MonoCloud");
+		this.Icon = global::Stetic.IconLoader.LoadIcon (this, "stock_volume", global::Gtk.IconSize.Menu);
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.vbox2 = new global::Gtk.VBox ();

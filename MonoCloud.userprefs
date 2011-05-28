@@ -3,20 +3,18 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="MonoCloud/MainWindow.cs" ctype="Workbench">
     <Files>
       <File FileName="MonoSoundCloud/NetHelper.cs" Line="27" Column="1" />
-      <File FileName="MonoSoundCloud/SoundCloudStreamer.cs" Line="111" Column="30" />
-      <File FileName="MonoCloud/MainWindow.cs" Line="89" Column="12" />
+      <File FileName="MonoSoundCloud/SoundCloudStreamer.cs" Line="138" Column="3" />
+      <File FileName="MonoCloud/MainWindow.cs" Line="122" Column="25" />
       <File FileName="MonoCloud/UIHelper.cs" Line="28" Column="39" />
+      <File FileName="MonoCloud/Main.cs" Line="12" Column="23" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="MonoCloud" expanded="True">
-            <Node name="UserInterface" expanded="True" />
-            <Node name="Images" expanded="True" />
-            <Node name="MainWindow.cs" selected="True" />
-          </Node>
+          <Node name="MonoCloud" expanded="True" />
           <Node name="MonoSoundCloud" expanded="True">
-            <Node name="Entities" expanded="True" />
+            <Node name="References" expanded="True" selected="True" />
+            <Node name="Dependencies" expanded="True" />
           </Node>
         </State>
       </Pad>

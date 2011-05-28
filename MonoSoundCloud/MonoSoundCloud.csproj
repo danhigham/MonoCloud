@@ -42,7 +42,7 @@
     </Reference>
     <Reference Include="gstreamer-sharp, Version=0.9.3.0, Culture=neutral, PublicKeyToken=4956b48baf980190">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\gstreamer-sharp\gstreamer-sharp\gstreamer-sharp.dll</HintPath>
+      <HintPath>Dependencies\gstreamer-sharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -58,5 +58,10 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Entities\" />
+    <Folder Include="Dependencies\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Dependencies\gstreamer-sharp.dll" />
+    <None Include="Dependencies\gstreamer-sharp.dll.config" />
   </ItemGroup>
 </Project>
