@@ -11,7 +11,7 @@
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
+        <State expanded="True" selected="True">
           <Node name="MonoCloud" expanded="True" />
           <Node name="MonoSoundCloud" expanded="True">
             <Node name="References" expanded="True" />
