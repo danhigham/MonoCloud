@@ -1,20 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" ctype="Workspace" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MonoCloud/MainWindow.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" ActiveRuntime="MS.NET" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MonoCloud\MainWindow.cs">
     <Files>
-      <File FileName="MonoSoundCloud/NetHelper.cs" Line="27" Column="1" />
-      <File FileName="MonoSoundCloud/SoundCloudStreamer.cs" Line="138" Column="3" />
-      <File FileName="MonoCloud/MainWindow.cs" Line="122" Column="25" />
-      <File FileName="MonoCloud/UIHelper.cs" Line="28" Column="39" />
-      <File FileName="MonoCloud/Main.cs" Line="12" Column="23" />
+      <File FileName="MonoSoundCloud\NetHelper.cs" Line="17" Column="27" />
+      <File FileName="MonoSoundCloud\SoundCloudStreamer.cs" Line="17" Column="21" />
+      <File FileName="MonoCloud\MainWindow.cs" Line="130" Column="40" />
+      <File FileName="MonoCloud\UIHelper.cs" Line="28" Column="39" />
+      <File FileName="MonoCloud\Main.cs" Line="12" Column="23" />
+      <File FileName="c:\Documents and Settings\Owner\Projects\MonoCloud\MonoSoundCloud\SoundCloudRestClient.cs" Line="4" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="MonoCloud" expanded="True" />
           <Node name="MonoSoundCloud" expanded="True">
-            <Node name="References" expanded="True" selected="True" />
-            <Node name="Dependencies" expanded="True" />
+            <Node name="References" expanded="True" />
+          </Node>
+          <Node name="MonoSoundCloud.Tests" expanded="True">
+            <Node name="References" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -35,20 +38,20 @@
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
         <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches ctype="PinnedWatchStore">
-    <Watch file="MonoSoundCloud.Tests/APITests.cs" line="23" offsetX="122" offsetY="164" expression="tracks" liveUpdate="False" />
-    <Watch file="MonoCloud/MainWindow.cs" line="94" offsetX="343" offsetY="1209" expression="track" liveUpdate="False" />
-    <Watch file="MonoCloud/MainWindow.cs" line="87" offsetX="355" offsetY="1118" expression="iter" liveUpdate="False" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="MonoSoundCloud.Tests\APITests.cs" line="23" offsetX="122" offsetY="164" expression="tracks" liveUpdate="False" />
+    <Watch file="MonoCloud\MainWindow.cs" line="94" offsetX="343" offsetY="1209" expression="track" liveUpdate="False" />
+    <Watch file="MonoCloud\MainWindow.cs" line="87" offsetX="355" offsetY="1118" expression="iter" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>

@@ -1,6 +1,5 @@
 using System;
 using Gtk;
-using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
@@ -41,7 +40,7 @@ public partial class MainWindow : Gtk.Window
 			_currentTreeIter = ti;
 			Track track = _searchResultStore.GetValue(ti, 0) as Track;
 			
-			if (track != null) DisplayTrackInfo(track);
+			//if (track != null) DisplayTrackInfo(track);
 		};
 		
 		/* Volume change */
@@ -141,7 +140,7 @@ public partial class MainWindow : Gtk.Window
 		{
 			SearchResults.Selection.SelectIter(iter);
 			Track track = _searchResultStore.GetValue(iter, 0) as Track;
-			DisplayTrackInfo (track);
+			//DisplayTrackInfo (track);
 		}
 	}
 	

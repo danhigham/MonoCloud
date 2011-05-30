@@ -43,7 +43,8 @@ namespace MonoSoundCloud
 			_currentUrl = url;
 			if (_playBin != null) {
 				_playBin.SetState(Gst.State.Null);
-				_playBin.SetVolume(StreamVolumeFormat.Linear, _initialVolume);
+				_playBin.Volume = _initialVolume;
+				//_playBin.SetVolume(StreamVolumeFormat.Linear, _initialVolume);
 			}
 			
 			url = String.Format("{0}?client_id={1}", url, SoundCloudRestClient.API_CLIENT_ID);
@@ -131,8 +132,10 @@ namespace MonoSoundCloud
 		
 		public void ChangeVolume(double level)
 		{
-			if (_playBin != null)
-				_playBin.SetVolume (StreamVolumeFormat.Linear, level);
+			if (_playBin != null) {
+				_playBin.Volume = level;
+				//_playBin.SetVolume (StreamVolumeFormat.Linear, level);
+			}
 		}
 		
 		public void Dispose()
